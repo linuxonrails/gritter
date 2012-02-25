@@ -50,12 +50,6 @@ module Gritter
         titles = gflash_titles(options)
         flashes = []
         session[:gflash].each do |key, value|
-          # use the old flash for navigators without javascript support
-          if [:success, :notice, :progress].include? key
-            flash[:notice] = value.first
-          else # :warning or :error
-            flash[:error] = value.first
-          end
           value.each do |gflash_value|
             gritter_options = { :image => key, :title => titles[key] }
             if gflash_value.is_a?(Hash)
