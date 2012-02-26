@@ -42,7 +42,9 @@ module Gritter
           # use the old flash for navigators without javascript support
           if [:success, :notice, :progress].include? key
             flash[:notice] = value
-          else # :warning or :error
+          elsif key == :warning
+            flash[:alert] = value
+          else  # :error
             flash[:error] = value
           end
       session[:gflash][key] ||= []
