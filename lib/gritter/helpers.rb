@@ -3,7 +3,18 @@ module Gritter
     def add_gritter text, *args
       options = args.extract_options!
       options[:title] = "Notification" if options[:title].blank?
-      options[:image] = ::Rails.version < "3.1" ? "/images/gritter/#{options[:image]}.png" : asset_path("#{options[:image]}#{options[:image] == 'progress' ? '.gif' : '.png'}") if %w(success warning error notice progress).include?(options[:image].to_s)
+      # options[:image] = ::Rails.version < "3.1" ? "/images/gritter/#{options[:image]}.png" : asset_path("#{options[:image]}#{options[:image] == 'progress' ? '.gif' : '.png'}") if %w(success warning error notice progress).include?(options[:image].to_s)
+
+      if %w(success warning error notice progress).include?(options[:image].to_s)
+        options[:image] = case options[:image].to_s
+          when 'error' then 'icon-remove-sign'
+          when 'notice' then 'icon-bell' # 'icon-lightbulb'
+          when 'success' then 'icon-ok'
+          when 'warning' then 'icon-warning-sign'
+          when 'progress' then 'icon-spinner icon-spin'
+        end
+      end
+
       notification = ["jQuery(function(){"]
       notification.push("jQuery.gritter.add({")
       notification.push("image:'#{options[:image]}',") if options[:image].present?

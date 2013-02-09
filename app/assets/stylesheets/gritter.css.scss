@@ -4,19 +4,19 @@
   right:20px;
   width:301px;
   z-index:9999;
-  
+
   &.top-left {
     left: 20px;
     right: auto;
   }
-  
+
   &.bottom-right {
     top: auto;
     left: auto;
     bottom: 20px;
     right: 20px;
   }
-  
+
   &.bottom-left {
     top: auto;
     right: auto;
@@ -54,7 +54,7 @@
   font-size: 11px;
   font-family:verdana;
   filter:inherit; // ie8 fix
-  
+
   &.gritter-css2 {
     background:url(image_path('gritter.png')) no-repeat left -40px;
   }
@@ -66,7 +66,7 @@
     padding-top: 12px;
     padding-bottom: 16px;
   }
-  
+
   p {
     padding:0;
     margin:0;
@@ -116,4 +116,13 @@
 .gritter-with-image {
   width:220px;
   float:right;
+}
+
+/* before: image, now: i (font awesome icon) */
+i.gritter-image {
+  font-size: 48px;
+}
+
+.gritter-close {
+  z-index: 200;
 }
